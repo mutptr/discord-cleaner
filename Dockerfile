@@ -1,11 +1,12 @@
 FROM node:18-alpine
+RUN corepack enable
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.yaml ./
 
-RUN npm ci --only=production
+RUN pnpm i --frozen-lockfile --prod
 
 COPY index.js ./
 
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["pnpm", "start"]
