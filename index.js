@@ -104,7 +104,7 @@ async function deleteMessages(type, name, id) {
     }
 
     if (messages.length == 0) {
-      offset += 25
+      offset += 25 - (offset % 25)
       bar.update({ offset })
     }
 
